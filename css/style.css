@@ -1,4 +1,5 @@
 html{
+    min-height: 100%;
     font-family: 'Roboto', sans-serif;
 }
 body{
@@ -82,4 +83,107 @@ div.table .imgTable{
     padding: 14px 0px;
 }
 
+/* Forms */
 
+div.fomrs label{
+
+}
+
+div.forms input{
+    margin-top: 2px;
+    margin-bottom: 15px;
+}
+
+div.forms input[type=text],div.forms select,div.forms input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+div.forms input[type=text]:focus,div.forms select:focus,div.forms input[type=password]:focus,div.forms textarea:focus,div.forms button:first-of-type:focus {
+    outline: transparent;
+    box-shadow: 0 0 0 2pt rgb(133 50 248);
+}
+
+div.forms input[type="radio"]{
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
+
+div.forms select{
+    margin-bottom: 20px;
+}
+
+div.forms textarea{
+    width: 100%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
+    margin-top: 2px;
+    margin-bottom: 15px;
+    font-family: 'Roboto', sans-serif;
+}
+
+div.forms button{
+    padding: 10px 30px;
+    border: 0px;
+    border-radius: 20px;
+    color:white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+}
+
+div.forms button:first-of-type{
+    outline: transparent;
+    background-color: rgb(133 50 248);
+    margin-right: 10px;
+}
+
+div.forms button:last-of-type{
+    outline: transparent;
+    background-color: rgb(50 60 248 / 44%);
+}
+
+div.forms button:last-of-type:hover{
+    outline: transparent;
+    box-shadow: 0 0 0 2pt rgb(50 60 248 / 44%);
+}
+
+/* TIN CSS */
+
+div.tinCss .left-col{
+    float: left;
+    width: 45%;
+}
+
+div.tinCss .right-col{
+    float: left;
+    width: 45%;
+}
+
+div.tinCss .cleared{
+    clear: both;
+}
+
+div.tinCss img{
+    border: 1px solid rgb(133 50 248);;
+    padding: 5px;
+    margin-right: 6px;
+    margin-top: 3px;
+}
+
+div.tinCss img.toLeft{
+    float: left;
+}
+
+div.tinCss img.toRight{
+    float: right;
+}

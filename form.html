@@ -10,13 +10,13 @@
 </head>
 
 <body>
-    <div class="wrapper">
+    <div class="wrapper" style="border-radius: 40px;">
         <div class="header">
             <h1 id="header-title">Footballers<i>library</i></h1>
             <nav>
                 <a href="index.html">Home</a> <span>|</span>
                 <a href="form.html">Form</a> <span>|</span>
-                <a href="form.html">TextCSS</a> <span>|</span>
+                <a href="textCss.html">TextCSS</a> <span>|</span>
                 <a href="form.html">Final</a> 
             </nav>
         </div>
@@ -25,38 +25,39 @@
                 <h2 class="contentHeaders">Form</h2>
                 <div class="forms">
                     <form>
-                        <label for="fname">First name:</label><br>
-                        <input type="text" id="fname" name="fname"><br>
-                        <label for="lname">Last name:</label><br>
-                        <input type="text" id="lname" name="lname"><br>
-                        <label for="pass">Password:</label><br>
-                        <input type="password" id="pass" name="pass"><br>
-                        <label for="pass">Sex:</label><br>
+                        <label for="fname">First name</label><br>
+                        <input type="text" placeholder="Type first name" id="fname" name="fname"><br>
+                        <label for="lname">Last name</label><br>
+                        <input type="text" placeholder="Type last name" id="lname" name="lname"><br>
+                        <label for="pass">Password</label><br>
+                        <input type="password" placeholder="Password" id="pass" name="pass"><br>
+                        <label for="pass">Sex:</label>
                         <input type="radio" id="male" name="gender" value="male">
-                        <label for="male">Male</label><br>
+                        <label for="male">Male</label>
                         <input type="radio" id="female" name="gender" value="female" checked="checked">
                         <label for="female">Female</label><br>
-                        <label for="cars">Choose a car:</label>
-                        <select name="cars" id="cars">
-                            <optgroup label="Swedish Cars">
-                                <option value="volvo">Volvo</option>
-                                <option value="saab">Saab</option>
+                        <label for="positions">Choose a position:</label>
+                        <select name="positions" id="positions">
+                            <optgroup label="Attack positions">
+                                <option value="n">N</option>
+                                <option value="ln">LN</option>
+                                <option value="pn">PN</option>
                             </optgroup>
-                            <optgroup label="German Cars">
-                                <option value="mercedes">Mercedes</option>
-                                <option value="audi">Audi</option>
+                            <optgroup label="Defend positions">
+                                <option value="so">SO</option>
+                                <option value="po">PO</option>
+                                <option value="lo">LO</option>
                             </optgroup>
                         </select><br>
-                        <input type="checkbox" name="vehicle1" value="Bike">
-                        <label for="vehicle1"> I have a bike</label><br>
-                        <label for="w3review">Review of W3Schools:</label><br>
-                        <textarea id="w3review" name="w3review" rows="4" cols="50">Textarea...</textarea><br>
+                        <label for="w3review">Short description:</label><br>
+                        <textarea id="w3review" name="w3review" rows="4" cols="50" placeholder="Type short description..."></textarea><br>
+                        <input type="checkbox" name="acceptTerms" value="1">
+                        <label for="acceptTerms">I have read and I agree with the terms and conditions.</label><br>
                         <button type="submit">Send</button>
                         <button type="reset">Reset</button>
                     </form>
                 </div>
             </div>
-
         </div>
     </div>
 </body>
