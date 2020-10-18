@@ -12,6 +12,11 @@ body{
 
 a{
     text-decoration: none;
+    color:#55389f
+}
+
+a:hover{
+    color:#eb12e5
 }
 
 .list ul li{
@@ -43,9 +48,14 @@ table, th, td {
     padding: 10px 20px;
 }
 
+.wrapper div.header{
+    padding: 0px;
+}
+
 .contentWrapper .contentHeaders{
     border-bottom: 2px solid rgb(133 50 248);
     padding-bottom: 1px;
+    margin-block-start: 0px;
 }
 
 .header nav{
@@ -63,6 +73,15 @@ table, th, td {
 #header-title{
     text-align: center;
     font-size: 3.5em;
+    background-image: url(/img/footballer-topBanner.png);
+    background-size: cover;
+    background-position: 10% 25%;
+    background-repeat: no-repeat;
+    border-radius: 25px;
+    padding-top: 0.67em;
+    padding-bottom: 0.67em;
+    margin-block-start: 0px;
+    margin-block-end: 30px;
 }
 
 #header-title i{
@@ -84,10 +103,6 @@ div.table .imgTable{
 }
 
 /* Forms */
-
-div.fomrs label{
-
-}
 
 div.forms input{
     margin-top: 2px;
@@ -178,6 +193,8 @@ div.tinCss img{
     padding: 5px;
     margin-right: 6px;
     margin-top: 3px;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 div.tinCss img.toLeft{
@@ -186,4 +203,52 @@ div.tinCss img.toLeft{
 
 div.tinCss img.toRight{
     float: right;
+}
+
+/* Final */
+
+div.final .contentHeaders{
+    font-size: 1.4em;
+    margin-block-start: 1em;
+}
+
+div.final .contentHeaders:first-of-type{
+    margin-block-start: 0em;
+}
+
+div.final .articleBlock{
+    margin: 10px 20px;
+    padding: 15px;
+    border: 1px solid rgba(0, 0, 0, .83);;
+    background: rgba(0, 0, 0, .43);
+}
+
+
+
+
+@media screen and (max-width:1320px) {
+    .wrapper{
+        width: 80%;
+    }
+}
+
+@media screen and (max-width:1160px) {
+    div.tinCss, div.tinCss div{
+        padding: 10px 0px;
+    }
+
+    div.tinCss .left-col,div.tinCss .right-col{
+        width: 100%;
+    }
+
+    div.tinCss img.toLeft,div.tinCss img.toRight{
+        float: left;
+    }
+
+}
+
+@media screen and (max-width:560px) {
+    #header-title{
+        font-size: 2.3em;
+    }
 }
