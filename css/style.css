@@ -148,6 +148,7 @@ div.forms textarea{
 }
 
 div.forms button{
+    margin-top: 20px;
     padding: 10px 30px;
     border: 0px;
     border-radius: 20px;
@@ -230,6 +231,9 @@ div.final .articleBlock{
     .wrapper{
         width: 80%;
     }
+    div.table{
+        flex-wrap: wrap;
+    }
 }
 
 @media screen and (max-width:1160px) {
@@ -247,8 +251,24 @@ div.final .articleBlock{
 
 }
 
+@media screen and (max-width:760px) {
+    div.table{
+        position: relative;
+        overflow: auto;
+        align-items: baseline;
+        justify-content: flex-start;
+    }
+}
+
+
 @media screen and (max-width:560px) {
     #header-title{
         font-size: 2.3em;
+    }
+}
+
+@media screen and (max-width:460px) {
+    .wrapper div{
+        padding: 5px 5px;
     }
 }
