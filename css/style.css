@@ -135,7 +135,7 @@ div.forms select{
 
 div.forms textarea{
     width: 100%;
-    height: 150px;
+    height: 125px;
     padding: 12px 20px;
     box-sizing: border-box;
     border: 1px solid #ccc;
@@ -224,7 +224,66 @@ div.final .articleBlock{
     background: rgba(0, 0, 0, .43);
 }
 
+/* Flex */
 
+div.tinCss img.rotate{
+    margin-right: auto;
+}
+
+img.rotate{
+    left: 0;
+    right: 0;
+    margin: auto;
+    margin-right: auto;
+    display: block;
+    transform:  rotateX(-21deg) rotateY(28deg) rotateZ(18deg) translateX(-13px);
+    box-shadow: 5px 5px 5px;
+    border-radius: 20px;
+}
+
+.rotate-img p{
+    text-align: center;
+    padding-top: 15px;
+}
+
+
+.flex aside{
+    float: left;
+    width: 100%;
+    margin-right: 40px;
+    min-width: 20%;
+}
+
+.flex aside figure{
+    margin: 0px;
+}
+
+div.tinCss.flex article p img{
+    max-width: 55%;
+}
+
+div.tinCss.flex article p{
+    margin: 0px 5px;
+}
+
+div.tinCss.flex article{
+    display: flex;
+}
+
+div.tinCss.flex article p .blockquote{
+    color: red;
+    padding: 20px;
+    display: block;
+}
+
+div.tinCss.flex footer{
+    text-align: center;
+    padding: 30px 0px;
+}
+
+div.tinCss.flex section{
+    display: flex;
+}
 
 
 @media screen and (max-width:1320px) {
@@ -247,8 +306,42 @@ div.final .articleBlock{
 
     div.tinCss img.toLeft,div.tinCss img.toRight{
         float: left;
+        max-width: 95%;
     }
 
+    div.tinCss.flex aside{
+        min-width: 30%; 
+    }
+
+    div.tinCss.flex article{
+        flex-wrap: wrap;
+    }
+
+    div.tinCss.flex article p{
+        flex-grow: 0;
+        flex-shrink: 0;
+        flex-basis: 47%;
+    }
+
+}
+
+@media screen and (max-width:991px) {
+    div.tinCss.flex article p{
+        flex-grow: 0;
+        flex-shrink: 0;
+        flex-basis: 100%;
+    }
+}
+
+@media screen and (max-width:800px) {
+    div.tinCss.flex aside{
+        margin-right: 0px;
+    }
+
+    div.tinCss.flex section{
+        flex-wrap: wrap;
+        flex-direction: column-reverse;
+    }
 }
 
 @media screen and (max-width:760px) {
