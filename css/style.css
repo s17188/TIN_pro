@@ -258,11 +258,11 @@ img.rotate{
     margin: 0px;
 }
 
-div.tinCss.flex article p img{
+div.tinCss.flex article p img,div.tinCss.grid article p img{
     max-width: 55%;
 }
 
-div.tinCss.flex article p{
+div.tinCss.flex article p,div.tinCss.grid article p{
     margin: 0px 5px;
 }
 
@@ -270,19 +270,38 @@ div.tinCss.flex article{
     display: flex;
 }
 
-div.tinCss.flex article p .blockquote{
+div.tinCss.flex article p .blockquote,div.tinCss.grid article p .blockquote{
     color: red;
     padding: 20px;
     display: block;
 }
 
-div.tinCss.flex footer{
+div.tinCss.flex footer,div.tinCss.grid footer{
     text-align: center;
     padding: 30px 0px;
 }
 
 div.tinCss.flex section{
     display: flex;
+}
+
+/* Grid */
+
+.grid figure{
+    margin-block-start: 0;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 40px;
+}
+
+div.tinCss.grid section{
+    display: grid;
+    grid-template-columns: 25% auto;
+}
+
+div.tinCss.grid section article{
+    grid-template-columns: auto auto auto;
+    display: grid;
 }
 
 
@@ -323,6 +342,14 @@ div.tinCss.flex section{
         flex-basis: 47%;
     }
 
+    div.tinCss.grid section{
+        grid-template-columns: 35% auto;
+    }
+    
+    div.tinCss.grid section article{
+        grid-template-columns: auto auto;
+    }
+
 }
 
 @media screen and (max-width:991px) {
@@ -330,6 +357,10 @@ div.tinCss.flex section{
         flex-grow: 0;
         flex-shrink: 0;
         flex-basis: 100%;
+    }
+
+    div.tinCss.grid section article{
+        grid-template-columns: auto;
     }
 }
 
@@ -341,6 +372,20 @@ div.tinCss.flex section{
     div.tinCss.flex section{
         flex-wrap: wrap;
         flex-direction: column-reverse;
+    }
+
+    div.tinCss.grid section{
+        grid-template-columns: auto;
+    }
+
+    div.tinCss.grid section aside{
+        order: 1;
+    }
+    .flex aside figure{
+        margin-block-start: 0;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 40px;
     }
 }
 
