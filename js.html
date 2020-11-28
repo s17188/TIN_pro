@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/3a.js"></script>
+    <script type="module" src="js/3b.js"></script>
+    <script type="module" src="js/3c.js"></script>
+    <script type="module" src="js/3d.js"></script>
+    <script src="js/3e.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <title>Footballers library</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <h1 id="header-title">Footballers<i>library</i></h1>
+            <nav>
+                <a href="index.html">Home</a> <span>|</span>
+                <a href="form.html">Form</a> <span>|</span>
+                <a href="textCss.html">TextCSS</a> <span>|</span>
+                <a href="final.html">Final</a> <span>|</span>
+                <a href="flex.html">Flex</a> <span>|</span>
+                <a href="grid.html">Grid</a> <span>|</span>
+                <a href="js.html">Js</a>
+            </nav>
+        </div>
+        <div class="body-content">
+            <div class="contentWrapper">
+                <h2 class="contentHeaders">JS</h2>
+                <div class="tinCss">
+                    <h2 class="contentHeaders">3a</h2>
+                    <p id='weather'>Pogoda na dzisiaj: </p>
+                    <h2 class="contentHeaders">3b</h2>
+                    <div class="forms">
+                        <form id="formConvert">
+                            <label for="date">Date</label><br>
+                            <input type="date" placeholder="Type date" id="date" name="date"><br>
+                            <label for="celsjusz">Celsjusz</label><br>
+                            <input type="number" placeholder="Type Celsjusz" id="celsjusz" name="celsjusz" value=0><br>
+                            <label for="fahrenheit">Fahrenheit</label><br>
+                            <input type="number" placeholder="Type Fahrenheit" id="fahrenheit" name="fahrenheit" value=0><br>
+                            <label for="pass">Choose result:</label>
+                            <input type="radio" id="fahrenheitCheck" name="convType" value="fahrenheit">
+                            <label for="fahrenheit">Celsjusz to Fahrenheit</label>
+                            <input type="radio" id="celsjuszCheck" name="convType" value="celsjusz" checked="checked">
+                            <label for="celsjusz">Fahrenheit to Celsjusz</label><br>
+                            <button type="submit">Convert</button>
+                            <button type="reset">Reset</button>
+                        </form>
+                    </div>
+                    <div id="resultConvert"></div>
+                    <h2 class="contentHeaders">3c</h2>
+                    <div class="table js">
+                        <table id='resultTable'>
+                            <tr>
+                                <th>Data</th>
+                                <th>Wpisana temperatura</th>
+                                <th>Przeliczona temperatura</th>
+                            </tr>
+                        </table>
+                    </div>
+                    <h2 class="contentHeaders">3e</h2>
+                    <div class="forms">
+                        <form id="formPrognoza">
+                            <label for="city">Miejscowosc</label><br>
+                            <input type="text" placeholder="Type miejscowosc" id="city" name="city"><br>
+                            <label for="day">Dzień tygodnia</label><br>
+                            <input type="text" placeholder="Type dzień tygodnia" id="day" name="day"><br>
+                            <button type="submit">Create</button>
+                        </form>
+                        <form id="formTemp">
+                            <label for="temp">Temperatura w ciągu doby(co 3 godziny)</label><br>
+                            <input type="number" placeholder="Type temp" id="temp" name="temp"><br>
+                            <button type="submit">Add</button>
+                        </form>
+                    </div>
+                    <div id="resPrognoza">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
