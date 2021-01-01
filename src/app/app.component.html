@@ -1,21 +1,23 @@
-<mat-drawer-container class="example-container" hasBackdrop=false>
-  <mat-drawer #drawer mode="push">
-    <mat-action-list>
-      <mat-list-item> Home </mat-list-item>
-      <mat-list-item> Login </mat-list-item>
-      <mat-list-item> Register </mat-list-item>
-     </mat-action-list>
-  </mat-drawer>
-  <mat-drawer-content>
-    <mat-toolbar color="primary">
-      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="drawer.toggle()">
-        <mat-icon *ngIf="!drawer.opened">menu</mat-icon>
-        <mat-icon *ngIf="drawer.opened">close</mat-icon>
-      </button>
-      <span>Footballers Library</span>
-      <span class="example-spacer"></span>
-      <span>username</span>
-    </mat-toolbar>
+<nb-layout>
+  <nb-layout-header fixed>
+    <a (click)="toggle()"  class="sidebar-toggle"><nb-icon icon="menu-outline"></nb-icon></a>
+    <h2 class="text_header">Footballers Library</h2>
+    <div class="header-container">
+      <nb-actions size="small">
+        <nb-action class="user-action" *nbIsGranted="['create', 'soccer']" >
+          <nb-user [nbContextMenu]="userMenu"
+                   [name]="user?.name"
+                   >
+          </nb-user>
+        </nb-action>
+      </nb-actions>
+    </div>
+  </nb-layout-header>
+  <nb-sidebar tag="menu" state="compacted">
+    <nb-menu [items]="items"></nb-menu>
+  </nb-sidebar>
+
+  <nb-layout-column  class="colored-column-info">
     <router-outlet></router-outlet>
-  </mat-drawer-content>
-</mat-drawer-container>
+  </nb-layout-column>
+</nb-layout>

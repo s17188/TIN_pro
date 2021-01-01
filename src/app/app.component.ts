@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NbAuthJWTToken, NbAuthService, NbAuthToken } from '@nebular/auth';
+import { NbMenuItem, NbSidebarService } from '@nebular/theme';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +8,69 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  showFiller = false;
-  title = 'footballers-app';
+  user:any = {}
+  items: NbMenuItem[] = [
+    {
+      title: 'Home',
+      icon: 'home-outline',
+      link: '/'
+    },
+    {
+      title: 'Login',
+      icon: 'log-in-outline',
+      link: '/auth/login'
+    },
+    {
+      title: 'Register',
+      icon: 'person-outline',
+      link: '/auth/register'
+    }
+  ]
+  userMenu = [ { title: 'Log out', link: '/auth/logout' } ];
+  constructor(
+    private sidebarService: NbSidebarService,
+    private authService: NbAuthService
+  ) {
+    this.authService.onTokenChange()
+      .subscribe((token: NbAuthToken) => {
+        console.log(token)
+        if (token.isValid()) {
+          this.user = token.getPayload()
+          this.items = [
+            {
+              title: 'Home',
+              icon: 'home-outline',
+              link: '/'
+            },
+            {
+              title: 'My soccers',
+              icon: 'list-outline',
+              link: '/my-soccers'
+            }
+          ]
+        }else{
+          this.items = [
+            {
+              title: 'Home',
+              icon: 'home-outline',
+              link: '/'
+            },
+            {
+              title: 'Login',
+              icon: 'log-in-outline',
+              link: '/auth/login'
+            },
+            {
+              title: 'Register',
+              icon: 'person-outline',
+              link: '/auth/register'
+            }
+          ]
+        }
+      });
+  }
+
+  toggle() {
+    this.sidebarService.toggle(true, 'menu');
+  }
 }
