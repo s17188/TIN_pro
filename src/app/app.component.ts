@@ -10,7 +10,7 @@ import { NbMenuItem, NbSidebarService } from '@nebular/theme';
 export class AppComponent {
   user:any = {}
   items: NbMenuItem[] = []
-  userMenu = [ { title: 'Log out', link: '/auth/logout' } ];
+  // userMenu = [ { title: 'Log out', link: '/auth/logout' } ];
   constructor(
     private sidebarService: NbSidebarService,
     private authService: NbAuthService
@@ -29,7 +29,7 @@ export class AppComponent {
             {
               title: 'My Soccers',
               icon: 'list-outline',
-              link: '/my-soccers'
+              link: 'my-soccers'
             }
           ]
         }else{
@@ -56,5 +56,9 @@ export class AppComponent {
 
   toggle() {
     this.sidebarService.toggle(true, 'menu');
+  }
+
+  logout(){
+
   }
 }

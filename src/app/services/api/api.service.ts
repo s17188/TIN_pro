@@ -16,6 +16,11 @@ export class ApiService {
     return this.http.get(this.api+'soccers').toPromise()
   }
 
+  async getAgentSoccers(){
+    let token:any = await this.getToken()
+    return this.http.post(this.api+'soccers/agent',token).toPromise()
+  }
+
   async createSoccer(soccer:any){
     let token:any = await this.getToken()
     soccer.agentId = token.payload._id

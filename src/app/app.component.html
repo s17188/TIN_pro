@@ -1,14 +1,15 @@
 <nb-layout>
   <nb-layout-header fixed>
-    <a (click)="toggle()"  class="sidebar-toggle"><nb-icon icon="menu-outline"></nb-icon></a>
+    <a (click)="toggle()" class="sidebar-toggle"><nb-icon icon="menu-outline"></nb-icon></a>
     <h2 class="text_header">Footballers Library</h2>
     <div class="header-container">
-      <nb-actions size="small">
-        <nb-action class="user-action" *nbIsGranted="['create', 'soccer']" >
-          <nb-user [nbContextMenu]="userMenu"
-                   [name]="user?.name + ' ' + user?.surname"
+      <nb-actions size="small" *nbIsGranted="['create', 'soccer']">
+        <nb-action class="user-action"  >
+          <nb-user [name]="user?.name + ' ' + user?.surname"
+                   nbContextMenuTag="my-context-menu"
                    >
           </nb-user>
+          <nb-action class="control-item" icon="log-out-outline" routerLink="/auth/logout"></nb-action>
         </nb-action>
       </nb-actions>
     </div>

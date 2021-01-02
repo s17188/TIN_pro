@@ -93,7 +93,7 @@ export class MySoccersPageComponent implements OnInit {
   }
 
   getData(){
-    this.api.getSoccers().then((data:any) => {
+    this.api.getAgentSoccers().then((data:any) => {
       this.source.load(data.data);
       this.source.setSort([{field:'create_date',direction:'desc'}])
     });
