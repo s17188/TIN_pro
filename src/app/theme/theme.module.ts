@@ -2,18 +2,26 @@ import {NgModule} from '@angular/core';
 import { 
   NbAccordionModule,
   NbActionsModule, 
+  NbButtonModule, 
   NbCardModule, 
   NbContextMenuModule, 
+  NbDatepickerModule, 
   NbIconModule, 
+  NbInputModule, 
   NbLayoutModule, 
   NbListModule, 
+  NbRadioModule, 
+  NbSelectModule, 
   NbSidebarModule, 
   NbSidebarService, 
   NbThemeService, 
   NbTreeGridModule, 
-  NbUserModule } from '@nebular/theme';
+  NbUserModule, 
+  NbWindowModule,
+  NbWindowService} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbAuthService, NbTokenService, NbTokenStorage } from '@nebular/auth';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 @NgModule({
   exports: [
@@ -27,12 +35,20 @@ import { NbAuthService, NbTokenService, NbTokenStorage } from '@nebular/auth';
     NbUserModule,
     NbListModule,
     NbCardModule,
-    NbAccordionModule
+    NbAccordionModule,
+    Ng2SmartTableModule,
+    NbDatepickerModule,
+    NbWindowModule,
+    NbInputModule,
+    NbRadioModule,
+    NbSelectModule,
+    NbButtonModule
   ],
   providers: [
     NbThemeService,
     NbSidebarService,
     NbAuthService,
-    NbTokenService],
+    NbTokenService,
+    NbWindowService],
 })
 export class ThemeModule {}

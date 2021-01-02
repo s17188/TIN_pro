@@ -5,19 +5,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ThemeModule } from './theme/theme.module';
-import { NbMenuModule, NbThemeModule } from '@nebular/theme';
+import { NbDatepickerModule, NbMenuModule, NbThemeModule, NbToastrModule, NbWindowModule } from '@nebular/theme';
 import { HomePageComponent } from './home-page/home-page/home-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NbRoleProvider, NbSecurityModule } from '@nebular/security';
 import { RoleProvider } from './services/role/role.provider';
 import { NbAuthJWTToken, NbAuthModule, NbAuthToken, NbPasswordAuthStrategy } from '@nebular/auth';
 import { MySoccersPageComponent } from './my-soccers-page/my-soccers-page/my-soccers-page.component';
+import { FormSoccerComponent } from './form-soccer/form-soccer/form-soccer.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
-    MySoccersPageComponent
+    MySoccersPageComponent,
+    FormSoccerComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +30,10 @@ import { MySoccersPageComponent } from './my-soccers-page/my-soccers-page/my-soc
     NbMenuModule.forRoot(),
     ThemeModule,
     HttpClientModule,
+    NbWindowModule.forRoot(),
+    NbDatepickerModule.forRoot(),
+    ReactiveFormsModule,
+    NbToastrModule.forRoot(),
     NbAuthModule.forRoot({
       strategies: [
         NbPasswordAuthStrategy.setup({

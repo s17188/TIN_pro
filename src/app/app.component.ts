@@ -9,23 +9,7 @@ import { NbMenuItem, NbSidebarService } from '@nebular/theme';
 })
 export class AppComponent {
   user:any = {}
-  items: NbMenuItem[] = [
-    {
-      title: 'Home',
-      icon: 'home-outline',
-      link: '/'
-    },
-    {
-      title: 'Login',
-      icon: 'log-in-outline',
-      link: '/auth/login'
-    },
-    {
-      title: 'Register',
-      icon: 'person-outline',
-      link: '/auth/register'
-    }
-  ]
+  items: NbMenuItem[] = []
   userMenu = [ { title: 'Log out', link: '/auth/logout' } ];
   constructor(
     private sidebarService: NbSidebarService,
@@ -43,7 +27,7 @@ export class AppComponent {
               link: '/'
             },
             {
-              title: 'My soccers',
+              title: 'My Soccers',
               icon: 'list-outline',
               link: '/my-soccers'
             }

@@ -6,7 +6,7 @@
       <nb-actions size="small">
         <nb-action class="user-action" *nbIsGranted="['create', 'soccer']" >
           <nb-user [nbContextMenu]="userMenu"
-                   [name]="user?.name"
+                   [name]="user?.name + ' ' + user?.surname"
                    >
           </nb-user>
         </nb-action>

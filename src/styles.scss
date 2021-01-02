@@ -15,3 +15,10 @@ body {
     background-size: cover;
     color: #fff;
 }
+.nb-theme-cosmic ng2-smart-table table input{
+  color:black
+}
+
+.nb-theme-cosmic ng2-smart-table .ng2-smart-actions a.ng2-smart-action,.nb-theme-cosmic ng2-smart-table th.ng2-smart-actions-title-add a{
+  font-size: 1rem !important;
+}
