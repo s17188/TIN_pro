@@ -1,4 +1,4 @@
-<nb-layout>
+<nb-layout windowMode>
   <nb-layout-header fixed>
     <a (click)="toggle()" class="sidebar-toggle"><nb-icon icon="menu-outline"></nb-icon></a>
     <h2 class="text_header">Footballers Library</h2>
@@ -14,7 +14,7 @@
       </nb-actions>
     </div>
   </nb-layout-header>
-  <nb-sidebar tag="menu" state="compacted">
+  <nb-sidebar tag="menu" state="compacted" responsive>
     <nb-menu [items]="items"></nb-menu>
   </nb-sidebar>
 

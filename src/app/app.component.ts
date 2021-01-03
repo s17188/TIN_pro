@@ -24,12 +24,13 @@ export class AppComponent {
             {
               title: 'Home',
               icon: 'home-outline',
-              link: '/'
+              link: '/home',
+              home: true
             },
             {
               title: 'My Soccers',
               icon: 'list-outline',
-              link: 'my-soccers'
+              link: '/my-soccers'
             }
           ]
         }else{
@@ -37,7 +38,8 @@ export class AppComponent {
             {
               title: 'Home',
               icon: 'home-outline',
-              link: '/'
+              link: '/home',
+              home: true
             },
             {
               title: 'Login',

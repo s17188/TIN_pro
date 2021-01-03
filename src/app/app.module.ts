@@ -14,13 +14,15 @@ import { NbAuthJWTToken, NbAuthModule, NbAuthToken, NbPasswordAuthStrategy } fro
 import { MySoccersPageComponent } from './my-soccers-page/my-soccers-page/my-soccers-page.component';
 import { FormSoccerComponent } from './form-soccer/form-soccer/form-soccer.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatchSoccerPageComponent } from './match-soccer-page/match-soccer-page/match-soccer-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
     MySoccersPageComponent,
-    FormSoccerComponent
+    FormSoccerComponent,
+    MatchSoccerPageComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +49,7 @@ import { ReactiveFormsModule } from '@angular/forms';
             endpoint: '/api/auth/login',
             method: 'post',
             redirect: {
-              success: '/',
+              success: '/home',
               failure: null
             }
           },

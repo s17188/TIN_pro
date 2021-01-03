@@ -5,7 +5,8 @@ import { HomePageComponent } from './home-page/home-page/home-page.component';
 import { MySoccersPageComponent } from './my-soccers-page/my-soccers-page/my-soccers-page.component';
 
 const routes: Routes = [
-  {path: '', component: HomePageComponent},
+  {path: '', redirectTo: 'home',pathMatch:'full'},
+  {path: 'home',component:HomePageComponent},
   {path: 'my-soccers', component: MySoccersPageComponent},
   {
     path: 'auth',

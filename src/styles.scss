@@ -22,3 +22,13 @@ body {
 .nb-theme-cosmic ng2-smart-table .ng2-smart-actions a.ng2-smart-action,.nb-theme-cosmic ng2-smart-table th.ng2-smart-actions-title-add a{
   font-size: 1rem !important;
 }
+
+.nb-theme-cosmic ng2-smart-table .ng2-smart-actions{
+  height: unset;
+  padding: 0.875rem 1.25rem;
+  min-width: 155px;
+}
+
+.nb-theme-cosmic ng2-smart-table .ng2-smart-actions ng2-st-tbody-edit-delete, .nb-theme-cosmic ng2-smart-table .ng2-smart-actions ng2-st-tbody-create-cancel, .nb-theme-cosmic ng2-smart-table .ng2-smart-actions ng2-st-actions,.nb-theme-cosmic ng2-smart-table .ng2-smart-actions a.ng2-smart-action, .nb-theme-cosmic ng2-smart-table th.ng2-smart-actions-title-add a{
+  margin-top: 5px;
+}

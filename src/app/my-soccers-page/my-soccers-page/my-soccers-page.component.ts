@@ -22,6 +22,18 @@ export class MySoccersPageComponent implements OnInit {
     edit:{
       confirmSave:true
     },
+    actions:{
+      custom:[
+        {
+          name:'add-match',
+          title:'Add match'
+        },
+        {
+          name:'view-match',
+          title:'View matches'
+        }
+      ]
+    },
     columns: {
       name: {
         title: 'Name'
@@ -90,6 +102,10 @@ export class MySoccersPageComponent implements OnInit {
     this.windowService.open(FormSoccerComponent, { title: `Edit Soccer`, context: event.data }).onClose.subscribe(()=>{
       this.getData()
     });
+  }
+
+  onCustom(event:any) {
+    console.log(event)
   }
 
   getData(){
