@@ -19,14 +19,19 @@
           </nb-accordion-item-body>
         </nb-accordion-item>
       
-        <nb-accordion-item>
+        <nb-accordion-item *ngIf="item.stats.length > 0">
           <nb-accordion-item-header>
             Matches
           </nb-accordion-item-header>
           <nb-accordion-item-body>
-            A nebula is an interstellar cloud of dust, hydrogen, helium and other ionized gases.
-            Originally, nebula was a name for any diffuse astronomical object,
-            including galaxies beyond the Milky Way.
+            <nb-card *ngFor="let stat of item.stats" status="info">
+              <nb-card-header>{{stat.match.match_date | date}} - {{stat.match.stadium}}</nb-card-header>
+              <nb-card-body>
+                <p>Playtime: {{stat.playtime}}</p>
+                <p>Red cards: {{stat.redCards}}</p>
+                <p>Yellow cards: {{stat.yellowCards}}</p>
+              </nb-card-body>
+            </nb-card>
           </nb-accordion-item-body>
         </nb-accordion-item>
     </nb-accordion>

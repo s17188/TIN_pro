@@ -1,0 +1,24 @@
+form{
+    min-width: 420px;
+    .form-add-match{
+        border-top: 1px solid;
+        margin-top: 15px;
+        padding-top: 15px;
+        &.disactive{
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        button{
+            &.addMatchBtn{
+                width: 100%;
+                margin-top: 15px;
+                margin-bottom: 15px;
+            }
+        }
+    }
+    .buttonsFun{
+        display: flex;
+        justify-content: space-around;
+        margin-top: 10px;
+      }
+}

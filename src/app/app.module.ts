@@ -15,6 +15,8 @@ import { MySoccersPageComponent } from './my-soccers-page/my-soccers-page/my-soc
 import { FormSoccerComponent } from './form-soccer/form-soccer/form-soccer.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatchSoccerPageComponent } from './match-soccer-page/match-soccer-page/match-soccer-page.component';
+import { FormMatchComponent } from './form-match/form-match/form-match.component';
+import { ViewSoccerMatchesComponent } from './view-soccer-matches/view-soccer-matches/view-soccer-matches.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { MatchSoccerPageComponent } from './match-soccer-page/match-soccer-page/
     HomePageComponent,
     MySoccersPageComponent,
     FormSoccerComponent,
-    MatchSoccerPageComponent
+    MatchSoccerPageComponent,
+    FormMatchComponent,
+    ViewSoccerMatchesComponent
   ],
   imports: [
     BrowserModule,

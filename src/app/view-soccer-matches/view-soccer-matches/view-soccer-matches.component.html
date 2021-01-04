@@ -1,0 +1,14 @@
+<nb-card size="medium">
+    <nb-list>
+      <nb-list-item *ngFor="let stat of matches">
+        <nb-card status="info">
+            <nb-card-header>{{stat.match.match_date | date}} - {{stat.match.stadium}}</nb-card-header>
+            <nb-card-body>
+              <p>Playtime: {{stat.playtime}}</p>
+              <p>Red cards: {{stat.redCards}}</p>
+              <p>Yellow cards: {{stat.yellowCards}}</p>
+            </nb-card-body>
+        </nb-card>
+      </nb-list-item>
+    </nb-list>
+</nb-card>

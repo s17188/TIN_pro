@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NbToastrService, NbWindowRef, NbWindowService } from '@nebular/theme';
 import { LocalDataSource } from 'ng2-smart-table';
+import { FormMatchComponent } from 'src/app/form-match/form-match/form-match.component';
 import { FormSoccerComponent } from 'src/app/form-soccer/form-soccer/form-soccer.component';
 import { ApiService } from 'src/app/services/api/api.service';
+import { ViewSoccerMatchesComponent } from 'src/app/view-soccer-matches/view-soccer-matches/view-soccer-matches.component';
 
 @Component({
   selector: 'app-my-soccers-page',
@@ -106,10 +108,18 @@ export class MySoccersPageComponent implements OnInit {
 
   onCustom(event:any) {
     console.log(event)
+    if(event.action == "add-match"){
+      this.windowService.open(FormMatchComponent, { title: `Add Match`, context: event.data }).onClose.subscribe(()=>{
+        this.getData()
+      });
+    }else{
+      this.windowService.open(ViewSoccerMatchesComponent, { title: `Matches & Stats`, context: event.data })
+    }
   }
 
   getData(){
     this.api.getAgentSoccers().then((data:any) => {
+      console.log(data)
       this.source.load(data.data);
       this.source.setSort([{field:'create_date',direction:'desc'}])
     });

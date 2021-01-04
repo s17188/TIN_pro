@@ -37,6 +37,20 @@ export class ApiService {
     return this.http.delete(this.api+'soccers/'+soccer._id).toPromise()
   }
 
+  getMatches(){
+    return this.http.get(this.api+'soccers/match').toPromise()
+  }
+
+  createMatch(match:any){
+    return this.http.post(this.api+'soccers/match',match).toPromise()
+  }
+
+  addSoccerToMatch(soccerId:string,stats:any){
+    let data = stats
+    data.soccerId=soccerId
+    return this.http.post(this.api+'soccers/stat',data).toPromise()
+  }
+
   getToken(){
     return this.authService.getToken().toPromise()
   }

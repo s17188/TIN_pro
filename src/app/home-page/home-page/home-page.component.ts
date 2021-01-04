@@ -12,6 +12,7 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.api.getSoccers().then((res:any)=>{
+      console.log(res)
       this.data=res.data.sort((a:any,b:any) => (a.create_date > b.create_date) ? -1 : ((b.create_date > a.create_date) ? 1 : 0));
     })
   }

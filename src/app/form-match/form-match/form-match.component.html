@@ -1,0 +1,47 @@
+<form [formGroup]="matchForm" (ngSubmit)="onSubmit()">
+    <div class="form-group row">
+      <label for="inputName" class="label col-sm-3 col-form-label">Select match or add new below</label>
+      <div class="full-name-inputs">
+        <nb-select placeholder="Select match" [(selected)]="selectedMatch" fullWidth="true" formControlName="matchId" required>
+            <nb-option>Select match</nb-option>
+            <nb-option [value]="match._id" *ngFor="let match of matches">{{match.match_date | date}} - {{match.stadium}} - Players Added ({{match.stats.length}})</nb-option>
+        </nb-select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="form-add-match" [ngClass]="{'disactive': selectedMatch != undefined }">
+        <form [formGroup]="addMatchForm" (ngSubmit)="addNewMatch()">
+            <label for="match_date" class="label col-sm-3 col-form-label">Match date</label>
+            <div class="col-sm-9">
+            <input nbInput fullWidth [nbDatepicker]="datepicker" placeholder="Match date" [disabled]="selectedMatch != undefined" formControlName="match_date" required>
+            <nb-datepicker #datepicker></nb-datepicker>
+            </div>
+            <div class="col-sm-9">
+            <label for="stadium" class="label col-sm-3 col-form-label">Stadium</label>
+            <div class="col-sm-9">
+                <input type="text" nbInput fullWidth id="stadium" placeholder="Stadium" formControlName="stadium" required>
+            </div>
+            </div>
+            <button [disabled]="selectedMatch != undefined || !addMatchForm.valid" nbButton status="primary" class="addMatchBtn">Add new match to list</button>
+        </form>
+      </div>
+      <label for="playtime" class="label col-sm-3 col-form-label">Playtime</label>
+      <div class="col-sm-9">
+        <input type="number" nbInput fullWidth id="playtime" placeholder="Playtime" formControlName="playtime">
+      </div>
+      <label for="redCards" class="label col-sm-3 col-form-label">Red cards</label>
+      <div class="col-sm-9">
+        <input type="number" nbInput fullWidth id="redCards" placeholder="Red cards" formControlName="redCards">
+      </div>
+      <label for="yellowcards" class="label col-sm-3 col-form-label">Yellow cards</label>
+      <div class="col-sm-9">
+        <input type="number" nbInput fullWidth id="yellowcards" placeholder="Yellow cards" formControlName="yellowCards">
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="offset-sm-3 col-sm-9 buttonsFun">
+        <button type="submit" [disabled]="!matchForm.valid" nbButton status="primary">Add soccer to match</button>
+        <button nbButton status="primary" (click)="close()">Cancel</button>
+      </div>
+    </div>
+  </form>
