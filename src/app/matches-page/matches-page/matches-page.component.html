@@ -1,0 +1,25 @@
+<nb-card status="success" *ngFor="let item of data">
+    <nb-card-header>{{item.match_date | date}} - {{item.stadium}}</nb-card-header>
+    <!-- <nb-card-body>
+      <p>Playtime: {{stat.playtime}}</p>
+      <p>Red cards: {{stat.redCards}}</p>
+      <p>Yellow cards: {{stat.yellowCards}}</p>
+    </nb-card-body> -->
+    <nb-accordion *ngIf="item.stats.length > 0">
+        <nb-accordion-item>
+          <nb-accordion-item-header>
+            Soccers
+          </nb-accordion-item-header>
+          <nb-accordion-item-body>
+            <nb-card *ngFor="let stat of item.stats" status="info">
+                <nb-card-header>{{stat.soccer.name}} {{stat.soccer.surname}}</nb-card-header>
+                <nb-card-body>
+                  <p>Playtime: {{stat.playtime}}</p>
+                  <p>Red cards: {{stat.redCards}}</p>
+                  <p>Yellow cards: {{stat.yellowCards}}</p>
+                </nb-card-body>
+              </nb-card>
+          </nb-accordion-item-body>
+        </nb-accordion-item>
+    </nb-accordion>
+</nb-card>

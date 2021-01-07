@@ -28,6 +28,11 @@ export class AppComponent {
               home: true
             },
             {
+              title: 'Matches',
+              icon: 'flag-outline',
+              link: '/matches'
+            },
+            {
               title: 'My Soccers',
               icon: 'list-outline',
               link: '/my-soccers'
@@ -40,6 +45,11 @@ export class AppComponent {
               icon: 'home-outline',
               link: '/home',
               home: true
+            },
+            {
+              title: 'Matches',
+              icon: 'flag-outline',
+              link: '/matches'
             },
             {
               title: 'Login',
