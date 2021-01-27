@@ -3,7 +3,7 @@
     <a (click)="toggle()" class="sidebar-toggle"><nb-icon icon="menu-outline"></nb-icon></a>
     <h2 class="text_header">Footballers Library</h2>
     <div class="header-container">
-      <nb-actions size="small" *nbIsGranted="['create', 'soccer']">
+      <nb-actions size="small" *nbIsGranted="['type', 'agent']">
         <nb-action class="user-action"  >
           <nb-user [name]="user?.name + ' ' + user?.surname"
                    nbContextMenuTag="my-context-menu"

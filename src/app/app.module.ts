@@ -79,14 +79,8 @@ import { MatchesPageComponent } from './matches-page/matches-page/matches-page.c
     }), 
     NbSecurityModule.forRoot({
       accessControl: {
-        guest: {
-          view: ['home'],
-        },
         user: {
-          parent: 'guest',
-          create: 'soccer',
-          edit: 'soccer',
-          remove: 'soccer'
+          type: 'agent'
         }
       },
     }),
