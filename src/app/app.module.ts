@@ -6,18 +6,18 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ThemeModule } from './theme/theme.module';
 import { NbDatepickerModule, NbMenuModule, NbThemeModule, NbToastrModule, NbWindowModule } from '@nebular/theme';
-import { HomePageComponent } from './home-page/home-page/home-page.component';
+import { HomePageComponent } from './pages/home-page/home-page/home-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NbRoleProvider, NbSecurityModule } from '@nebular/security';
 import { RoleProvider } from './services/role/role.provider';
 import { NbAuthJWTToken, NbAuthModule, NbAuthToken, NbPasswordAuthStrategy } from '@nebular/auth';
-import { MySoccersPageComponent } from './my-soccers-page/my-soccers-page/my-soccers-page.component';
-import { FormSoccerComponent } from './form-soccer/form-soccer/form-soccer.component';
+import { MySoccersPageComponent } from './pages/my-soccers-page/my-soccers-page/my-soccers-page.component';
+import { FormSoccerComponent } from './pages/form-soccer/form-soccer/form-soccer.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatchSoccerPageComponent } from './match-soccer-page/match-soccer-page/match-soccer-page.component';
-import { FormMatchComponent } from './form-match/form-match/form-match.component';
-import { ViewSoccerMatchesComponent } from './view-soccer-matches/view-soccer-matches/view-soccer-matches.component';
-import { MatchesPageComponent } from './matches-page/matches-page/matches-page.component';
+import { MatchSoccerPageComponent } from './pages/match-soccer-page/match-soccer-page/match-soccer-page.component';
+import { FormMatchComponent } from './pages/form-match/form-match/form-match.component';
+import { ViewSoccerMatchesComponent } from './pages/view-soccer-matches/view-soccer-matches/view-soccer-matches.component';
+import { MatchesPageComponent } from './pages/matches-page/matches-page/matches-page.component';
 
 @NgModule({
   declarations: [

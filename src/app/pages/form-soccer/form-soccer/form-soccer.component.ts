@@ -1,8 +1,11 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { NbToastrService, NbWindowConfig, NbWindowRef } from '@nebular/theme';
+import { NbGlobalPhysicalPosition, NbToastrService, NbWindowConfig, NbWindowRef } from '@nebular/theme';
+import { IApi } from 'src/app/interfaces/api';
+import { Soccer } from 'src/app/interfaces/soccer';
 import { ApiService } from 'src/app/services/api/api.service';
-
+import { ToastService } from 'src/app/services/toast/toast.service';
+import removeFalsy from 'src/app/util/removeFalsy';
 @Component({
   selector: 'app-form-soccer',
   templateUrl: './form-soccer.component.html',
@@ -17,7 +20,7 @@ export class FormSoccerComponent implements OnInit {
     weight: [''],
     price: [''],
     birthdate: [''],
-    sex: [''],
+    gender: [''],
     nationality: [''],
     desc: ['']
   })
@@ -29,7 +32,7 @@ export class FormSoccerComponent implements OnInit {
 
   constructor(
     private api:ApiService,
-    private toastrService: NbToastrService,
+    private toast:ToastService,
     private windowRef: NbWindowRef,
     private windowConf: NbWindowConfig,
     private fb: FormBuilder) { }
@@ -37,7 +40,6 @@ export class FormSoccerComponent implements OnInit {
   ngOnInit(): void {
     this.windowConf.closeOnBackdropClick = false
     this.windowConf.closeOnEsc = false
-    console.log(this.windowConf.context)
     if(this.windowConf.context?.hasOwnProperty("name")){
       this.edit = true
       let data:any = this.windowConf.context
@@ -48,31 +50,29 @@ export class FormSoccerComponent implements OnInit {
         weight:data?.weight || null,
         price:data?.price || null,
         birthdate:data?.birthdate || '',
-        sex:data?.sex || '',
+        gender:data?.gender || '',
         nationality:data?.nationality || '',
         desc:data?.desc || '',
       })
-      if(data.sex){
-        this.option = data.sex
+      if(data.gender){
+        this.option = data.gender
       }
     }
   }
 
   onSubmit(){
     if(!this.edit){
-      let data = this.removeFalsy(this.soccerForm.value)
-      this.api.createSoccer(data).then((res:any)=>{
-        console.log(res)
-        this.showToast('top-right', 'success',res.message)
+      let data:Soccer = removeFalsy(this.soccerForm.value)
+      this.api.createSoccer(data).then((res:IApi<Soccer>)=>{
+        this.toast.showToast(NbGlobalPhysicalPosition.TOP_RIGHT,'success',res.message)
         this.windowRef.close()
       })
     }else{
-      let context:any = this.windowConf.context
-      let data = this.soccerForm.value
+      let context:Soccer = <Soccer> this.windowConf.context
+      let data:Soccer = this.soccerForm.value
       data._id = context._id
-      this.api.updateSoccer(data).then((res:any)=>{
-        console.log(res)
-        this.showToast('top-right', 'success',res.message)
+      this.api.updateSoccer(data).then((res:IApi<Soccer>)=>{
+        this.toast.showToast(NbGlobalPhysicalPosition.TOP_RIGHT,'success',res.message)
         this.windowRef.close()
       })
     }
@@ -81,19 +81,4 @@ export class FormSoccerComponent implements OnInit {
   close(){
     this.windowRef.close()
   }
-
-  showToast(position:any, status:any,msg:string) {
-    this.toastrService.show(
-      '',
-      msg,
-      { position, status });
-  }
-
-  removeFalsy(obj:any){
-    let newObj:any = {};
-    Object.keys(obj).forEach((prop) => {
-      if (obj[prop]) { newObj[prop] = obj[prop]; }
-    });
-    return newObj;
-  };
 }

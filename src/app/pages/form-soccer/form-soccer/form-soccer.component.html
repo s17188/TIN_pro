@@ -25,9 +25,9 @@
       <nb-datepicker #datepicker></nb-datepicker>
     </div>
     <div>
-      <label class="col-sm-3 label">Sex</label>
+      <label class="col-sm-3 label">Gender</label>
       <div>
-        <nb-radio-group [(ngModel)]="option" formControlName="sex">
+        <nb-radio-group [(value)]="option" formControlName="gender">
           <nb-radio
             *ngFor="let option of options"
             [value]="option.value">

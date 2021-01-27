@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { NbAuthComponent, NbLoginComponent, NbRegisterComponent, NbLogoutComponent, NbRequestPasswordComponent, NbResetPasswordComponent } from '@nebular/auth';
-import { HomePageComponent } from './home-page/home-page/home-page.component';
-import { MatchesPageComponent } from './matches-page/matches-page/matches-page.component';
-import { MySoccersPageComponent } from './my-soccers-page/my-soccers-page/my-soccers-page.component';
+import { HomePageComponent } from './pages/home-page/home-page/home-page.component';
+import { MatchesPageComponent } from './pages/matches-page/matches-page/matches-page.component';
+import { MySoccersPageComponent } from './pages/my-soccers-page/my-soccers-page/my-soccers-page.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home',pathMatch:'full'},

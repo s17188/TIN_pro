@@ -21,7 +21,6 @@ export class ViewSoccerMatchesComponent implements OnInit {
   ngOnInit(): void {
     this.windowConf.closeOnBackdropClick = false
     this.windowConf.closeOnEsc = false
-    console.log(this.windowConf.context)
     let context:any = this.windowConf.context
     this.matches = context.stats
   }

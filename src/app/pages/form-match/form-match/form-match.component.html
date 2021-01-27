@@ -13,7 +13,7 @@
         <form [formGroup]="addMatchForm" (ngSubmit)="addNewMatch()">
             <label for="match_date" class="label col-sm-3 col-form-label">Match date</label>
             <div class="col-sm-9">
-            <input nbInput fullWidth [nbDatepicker]="datepicker" placeholder="Match date" [disabled]="selectedMatch != undefined" formControlName="match_date">
+            <input nbInput fullWidth [nbDatepicker]="datepicker" placeholder="Match date" formControlName="match_date">
             <nb-datepicker #datepicker></nb-datepicker>
             </div>
             <div class="col-sm-9">

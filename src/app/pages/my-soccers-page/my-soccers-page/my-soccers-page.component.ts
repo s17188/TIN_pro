@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { NbGlobalPhysicalPosition, NbToastrService, NbWindowRef, NbWindowService } from '@nebular/theme';
 import { LocalDataSource } from 'ng2-smart-table';
-import { FormMatchComponent } from 'src/app/form-match/form-match/form-match.component';
-import { FormSoccerComponent } from 'src/app/form-soccer/form-soccer/form-soccer.component';
 import { IApi } from 'src/app/interfaces/api';
 import { Soccer } from 'src/app/interfaces/soccer';
 import { ApiService } from 'src/app/services/api/api.service';
-import { ViewSoccerMatchesComponent } from 'src/app/view-soccer-matches/view-soccer-matches/view-soccer-matches.component';
+import { ToastService } from 'src/app/services/toast/toast.service';
+import { FormMatchComponent } from '../../form-match/form-match/form-match.component';
+import { FormSoccerComponent } from '../../form-soccer/form-soccer/form-soccer.component';
+import { ViewSoccerMatchesComponent } from '../../view-soccer-matches/view-soccer-matches/view-soccer-matches.component';
 
 @Component({
   selector: 'app-my-soccers-page',
@@ -61,8 +62,8 @@ export class MySoccersPageComponent implements OnInit {
       birthdate: {
         title: 'Birthdate'
       },
-      sex: {
-        title: 'Sex'
+      gender: {
+        title: 'Gender'
       },
       nationality: {
         title: 'Nationality'
@@ -75,7 +76,7 @@ export class MySoccersPageComponent implements OnInit {
   constructor(
     private api:ApiService,
     private windowService: NbWindowService,
-    private toastrService: NbToastrService
+    private toast:ToastService
   ) { 
     this.source = new LocalDataSource();
     this.getData()
@@ -94,7 +95,7 @@ export class MySoccersPageComponent implements OnInit {
     let soccer:Soccer = event.data
     if (window.confirm('Are you sure you want to delete?')) {
       this.api.delSoccer(soccer).then((res:IApi<Soccer>)=>{
-        this.showToast(NbGlobalPhysicalPosition.TOP_RIGHT, res.status,res.message)
+        this.toast.showToast(NbGlobalPhysicalPosition.TOP_RIGHT, res.status,res.message)
         this.getData()
       })
     } 
@@ -124,12 +125,4 @@ export class MySoccersPageComponent implements OnInit {
       this.source.setSort([{field:'create_date',direction:'desc'}])
     });
   }
-
-  showToast(position:NbGlobalPhysicalPosition, status:any,msg:string) {
-    this.toastrService.show(
-      '',
-      msg,
-      { position, status });
-  }
-
 }
