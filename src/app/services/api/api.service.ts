@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { NbAuthService } from '@nebular/auth';
+import { NbAuthService, NbAuthSimpleToken, NbAuthToken } from '@nebular/auth';
+import { IApi } from 'src/app/interfaces/api';
+import { Soccer } from 'src/app/interfaces/soccer';
+import { Match } from 'src/app/interfaces/match';
+import { Stat } from 'src/app/interfaces/stat';
 
 @Injectable({
   providedIn: 'root'
@@ -12,46 +16,45 @@ export class ApiService {
     private authService: NbAuthService
   ) { }
 
-  getSoccers(){
-    return this.http.get(this.api+'soccers').toPromise()
+  getSoccers():Promise<IApi<Soccer[]>>{
+    return this.http.get<IApi<Soccer[]>>(this.api+'soccers').toPromise()
   }
 
-  async getAgentSoccers(){
-    let token:any = await this.getToken()
-    return this.http.post(this.api+'soccers/agent',token).toPromise()
+  async getAgentSoccers():Promise<IApi<Soccer[]>>{
+    let token:NbAuthToken = await this.getToken()
+    return this.http.post<IApi<Soccer[]>>(this.api+'soccers/agent',token).toPromise()
   }
 
-  async createSoccer(soccer:any){
-    let token:any = await this.getToken()
-    soccer.agentId = token.payload._id
-    return this.http.post(this.api+'soccers',soccer).toPromise()
+  async createSoccer(soccer:Soccer):Promise<IApi<Soccer>>{
+    let token:NbAuthToken = await this.getToken()
+    soccer.agentId = token.getPayload()._id
+    return this.http.post<IApi<Soccer>>(this.api+'soccers',soccer).toPromise()
   }
 
-  async updateSoccer(soccer:any){
-    let token:any = await this.getToken()
-    soccer.agentId = token.payload._id
-    return this.http.put(this.api+'soccers/'+soccer._id,soccer).toPromise()
+  async updateSoccer(soccer:Soccer):Promise<IApi<Soccer>>{
+    let token:NbAuthToken = await this.getToken()
+    soccer.agentId = token.getPayload()._id
+    return this.http.put<IApi<Soccer>>(this.api+'soccers/'+soccer._id,soccer).toPromise()
   }
 
-  delSoccer(soccer:any){
-    return this.http.delete(this.api+'soccers/'+soccer._id).toPromise()
+  delSoccer(soccer:Soccer):Promise<IApi<Soccer>>{
+    return this.http.delete<IApi<Soccer>>(this.api+'soccers/'+soccer._id).toPromise()
   }
 
-  getMatches(){
-    return this.http.get(this.api+'soccers/match').toPromise()
+  getMatches():Promise<IApi<Match[]>>{
+    return this.http.get<IApi<Match[]>>(this.api+'soccers/match').toPromise()
   }
 
-  createMatch(match:any){
-    return this.http.post(this.api+'soccers/match',match).toPromise()
+  createMatch(match:Match):Promise<IApi<Match>>{
+    return this.http.post<IApi<Match>>(this.api+'soccers/match',match).toPromise()
   }
 
-  addSoccerToMatch(soccerId:string,stats:any){
-    let data = stats
-    data.soccerId=soccerId
-    return this.http.post(this.api+'soccers/stat',data).toPromise()
+  addSoccerToMatch(soccerId:string,match:Match):Promise<IApi<Match>>{
+    match.soccerId=soccerId
+    return this.http.post<IApi<Match>>(this.api+'soccers/stat',match).toPromise()
   }
 
-  getToken(){
+  getToken():Promise<NbAuthToken>{
     return this.authService.getToken().toPromise()
   }
 
