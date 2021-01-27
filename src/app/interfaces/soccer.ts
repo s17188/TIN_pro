@@ -8,7 +8,7 @@ export interface Soccer {
     nationality:String,
     height:Number,
     weight:Number,
-    sex:{type:String,enum:['Man','Female']},
+    gender:{type:String,enum:['Man','Female']},
     price:Number,
     desc:String,
     age:Number,
