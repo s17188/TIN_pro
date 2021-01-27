@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { NbToastrService, NbWindowRef, NbWindowConfig, NbGlobalPhysicalPosition } from '@nebular/theme';
+import { NbWindowRef, NbWindowConfig, NbGlobalPhysicalPosition } from '@nebular/theme';
 import { IApi } from 'src/app/interfaces/api';
 import { Match } from 'src/app/interfaces/match';
 import { Soccer } from 'src/app/interfaces/soccer';
