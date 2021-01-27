@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { NbToastrService, NbWindowRef, NbWindowConfig } from '@nebular/theme';
 import { ApiService } from 'src/app/services/api/api.service';
 
@@ -11,16 +11,16 @@ import { ApiService } from 'src/app/services/api/api.service';
 export class FormMatchComponent implements OnInit {
   matches:any = []
   selectedMatch:any
-  matchForm = new FormGroup({
-    matchId: new FormControl(''),
-    playtime: new FormControl(''),
-    redCards: new FormControl(''),
-    yellowCards: new FormControl('')
-  });
-  addMatchForm = new FormGroup({
-    match_date: new FormControl(''),
-    stadium: new FormControl('')
-  });
+  matchForm = this.fb.group({
+    matchId: ['',Validators.required],
+    playtime: [''],
+    redCards: [''],
+    yellowCards: ['']
+  })
+  addMatchForm = this.fb.group({
+    match_date: ['',Validators.required],
+    stadium: ['',Validators.required],
+  })
   options = [
     {value: 'Man', label: 'Man'},
     {value: 'Female', label: 'Female'}
@@ -30,7 +30,8 @@ export class FormMatchComponent implements OnInit {
     private api:ApiService,
     private toastrService: NbToastrService,
     private windowRef: NbWindowRef,
-    private windowConf: NbWindowConfig) 
+    private windowConf: NbWindowConfig,
+    private fb: FormBuilder) 
     { 
 
     }

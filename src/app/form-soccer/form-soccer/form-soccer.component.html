@@ -1,36 +1,32 @@
 <form [formGroup]="soccerForm" (ngSubmit)="onSubmit()">
   <div class="form-group row">
-    <label for="inputName" class="label col-sm-3 col-form-label">Name & Surname</label>
+    <label for="inputName" class="label">Name & Surname</label>
     <div class="full-name-inputs">
-      <input type="text" nbInput id="inputName" required fullWidth placeholder="Name" formControlName="name">
-      <input type="text" nbInput id="inputSurname" required fullWidth placeholder="Surname" formControlName="surname">
+      <input type="text" nbInput id="inputName" fullWidth placeholder="Name" formControlName="name">
+      <input type="text" nbInput id="inputSurname" fullWidth placeholder="Surname" formControlName="surname">
     </div>
   </div>
   <div class="form-group row">
-    <label for="height" class="label col-sm-3 col-form-label">Height</label>
-    <div class="col-sm-9">
+    <label for="height" class="label">Height</label>
+    <div>
       <input type="number" nbInput fullWidth id="height" placeholder="Height" formControlName="height">
     </div>
-    <label for="weight" class="label col-sm-3 col-form-label">Weight</label>
-    <div class="col-sm-9">
+    <label for="weight" class="label">Weight</label>
+    <div>
       <input type="number" nbInput fullWidth id="weight" placeholder="Weight" formControlName="weight">
     </div>
-    <!-- <label for="age" class="label col-sm-3 col-form-label">Age</label> -->
-    <!-- <div class="col-sm-9">
-      <input type="number" nbInput fullWidth id="age" placeholder="Age" formControlName="age" disabled>
-    </div> -->
-    <label for="price" class="label col-sm-3 col-form-label">Price</label>
-    <div class="col-sm-9">
+    <label for="price" class="label">Price</label>
+    <div>
       <input type="number" nbInput fullWidth id="price" placeholder="Price" formControlName="price">
     </div>
-    <label for="birthdate" class="label col-sm-3 col-form-label">Birthdate</label>
-    <div class="col-sm-9">
+    <label for="birthdate" class="label">Birthdate</label>
+    <div>
       <input id="birthdate" nbInput fullWidth [nbDatepicker]="datepicker" placeholder="Birthdate" formControlName="birthdate">
       <nb-datepicker #datepicker></nb-datepicker>
     </div>
-    <div class="col-sm-9">
+    <div>
       <label class="col-sm-3 label">Sex</label>
-      <div class="col-sm-9">
+      <div>
         <nb-radio-group [(ngModel)]="option" formControlName="sex">
           <nb-radio
             *ngFor="let option of options"
@@ -40,21 +36,21 @@
         </nb-radio-group>
       </div>
     </div>
-    <div class="col-sm-9">
-      <label for="nationality" class="label col-sm-3 col-form-label">Nationality</label>
-      <div class="col-sm-9">
+    <div>
+      <label for="nationality" class="label">Nationality</label>
+      <div>
         <input type="text" nbInput fullWidth id="nationality" placeholder="Nationality" formControlName="nationality">
       </div>
     </div>
-    <div class="col-sm-9">
-      <label for="desc" class="label col-sm-3 col-form-label">Description</label>
-      <div class="col-sm-9">
+    <div>
+      <label for="desc" class="label">Description</label>
+      <div>
         <textarea rows="5" nbInput fullWidth id="desc" shape="round" placeholder="Description" formControlName="desc"></textarea>
       </div>
     </div>
   </div>
   <div class="form-group row">
-    <div class="offset-sm-3 col-sm-9 buttonsFun">
+    <div class="offset-sm-3  buttonsFun">
       <button type="submit" [disabled]="!soccerForm.valid" nbButton status="primary">{{edit ? 'Update Soccer' : 'Add Soccer'}}</button>
       <button nbButton status="primary" (click)="close()">Cancel</button>
     </div>

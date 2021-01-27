@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { NbToastrService, NbWindowConfig, NbWindowRef } from '@nebular/theme';
 import { ApiService } from 'src/app/services/api/api.service';
 
@@ -10,18 +10,17 @@ import { ApiService } from 'src/app/services/api/api.service';
 })
 export class FormSoccerComponent implements OnInit {
   edit:boolean = false
-  soccerForm = new FormGroup({
-    name: new FormControl(''),
-    surname: new FormControl(''),
-    height: new FormControl(''),
-    weight: new FormControl(''),
-    // age: new FormControl(''),
-    price: new FormControl(''),
-    birthdate: new FormControl(''),
-    sex: new FormControl(''),
-    nationality: new FormControl(''),
-    desc: new FormControl(''),
-  });
+  soccerForm = this.fb.group({
+    name: ['',Validators.required],
+    surname: ['',Validators.required],
+    height: [''],
+    weight: [''],
+    price: [''],
+    birthdate: [''],
+    sex: [''],
+    nationality: [''],
+    desc: ['']
+  })
   options = [
     {value: 'Man', label: 'Man'},
     {value: 'Female', label: 'Female'}
@@ -32,7 +31,8 @@ export class FormSoccerComponent implements OnInit {
     private api:ApiService,
     private toastrService: NbToastrService,
     private windowRef: NbWindowRef,
-    private windowConf: NbWindowConfig) { }
+    private windowConf: NbWindowConfig,
+    private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.windowConf.closeOnBackdropClick = false
@@ -46,7 +46,6 @@ export class FormSoccerComponent implements OnInit {
         surname:data?.surname || '',
         height:data?.height || null,
         weight:data?.weight || null,
-        // age:data?.age || null,
         price:data?.price || null,
         birthdate:data?.birthdate || '',
         sex:data?.sex || '',
