@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators/map';
+import { map } from 'rxjs/operators';
 
 import { NbAuthService, NbAuthJWTToken, NbAuthToken } from '@nebular/auth';
 import { NbRoleProvider } from '@nebular/security';
