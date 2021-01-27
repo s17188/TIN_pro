@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { NbToastrService, NbWindowRef, NbWindowService } from '@nebular/theme';
+import { NbGlobalPhysicalPosition, NbToastrService, NbWindowRef, NbWindowService } from '@nebular/theme';
 import { LocalDataSource } from 'ng2-smart-table';
 import { FormMatchComponent } from 'src/app/form-match/form-match/form-match.component';
 import { FormSoccerComponent } from 'src/app/form-soccer/form-soccer/form-soccer.component';
+import { IApi } from 'src/app/interfaces/api';
+import { Soccer } from 'src/app/interfaces/soccer';
 import { ApiService } from 'src/app/services/api/api.service';
 import { ViewSoccerMatchesComponent } from 'src/app/view-soccer-matches/view-soccer-matches/view-soccer-matches.component';
 
@@ -89,43 +91,41 @@ export class MySoccersPageComponent implements OnInit {
   }
 
   onDelete(event:any) {
-    console.log(event)
+    let soccer:Soccer = event.data
     if (window.confirm('Are you sure you want to delete?')) {
-      this.api.delSoccer(event.data).then((res:any)=>{
-        console.log(res)
-        this.showToast('top-right', res.status,res.message)
+      this.api.delSoccer(soccer).then((res:IApi<Soccer>)=>{
+        this.showToast(NbGlobalPhysicalPosition.TOP_RIGHT, res.status,res.message)
         this.getData()
       })
     } 
   }
 
   onEdit(event:any) {
-    console.log(event)
-    this.windowService.open(FormSoccerComponent, { title: `Edit Soccer`, context: event.data }).onClose.subscribe(()=>{
+    let soccer:Soccer = event.data
+    this.windowService.open(FormSoccerComponent, { title: `Edit Soccer`, context: soccer }).onClose.subscribe(()=>{
       this.getData()
     });
   }
 
   onCustom(event:any) {
-    console.log(event)
+    let soccer:Soccer = event.data
     if(event.action == "add-match"){
-      this.windowService.open(FormMatchComponent, { title: `Add Match`, context: event.data }).onClose.subscribe(()=>{
+      this.windowService.open(FormMatchComponent, { title: `Add Match`, context: soccer }).onClose.subscribe(()=>{
         this.getData()
       });
     }else{
-      this.windowService.open(ViewSoccerMatchesComponent, { title: `Matches & Stats`, context: event.data })
+      this.windowService.open(ViewSoccerMatchesComponent, { title: `Matches & Stats`, context: soccer })
     }
   }
 
   getData(){
-    this.api.getAgentSoccers().then((data:any) => {
-      console.log(data)
+    this.api.getAgentSoccers().then((data:IApi<Soccer[]>) => {
       this.source.load(data.data);
       this.source.setSort([{field:'create_date',direction:'desc'}])
     });
   }
 
-  showToast(position:any, status:any,msg:string) {
+  showToast(position:NbGlobalPhysicalPosition, status:any,msg:string) {
     this.toastrService.show(
       '',
       msg,
