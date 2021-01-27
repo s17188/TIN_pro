@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { NbGlobalPhysicalPosition, NbToastrService, NbWindowRef, NbWindowService } from '@nebular/theme';
+import { NbGlobalPhysicalPosition, NbWindowService } from '@nebular/theme';
 import { LocalDataSource } from 'ng2-smart-table';
+import { FormMatchComponent } from 'src/app/components/form-match/form-match/form-match.component';
+import { FormSoccerComponent } from 'src/app/components/form-soccer/form-soccer/form-soccer.component';
+import { ViewSoccerMatchesComponent } from 'src/app/components/view-soccer-matches/view-soccer-matches/view-soccer-matches.component';
 import { IApi } from 'src/app/interfaces/api';
 import { Soccer } from 'src/app/interfaces/soccer';
 import { ApiService } from 'src/app/services/api/api.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
-import { FormMatchComponent } from '../../form-match/form-match/form-match.component';
-import { FormSoccerComponent } from '../../form-soccer/form-soccer/form-soccer.component';
-import { ViewSoccerMatchesComponent } from '../../view-soccer-matches/view-soccer-matches/view-soccer-matches.component';
-
 @Component({
   selector: 'app-my-soccers-page',
   templateUrl: './my-soccers-page.component.html',
