@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import * as _ from 'lodash';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NbGlobalPhysicalPosition, NbWindowConfig, NbWindowRef } from '@nebular/theme';
 import { IApi } from 'src/app/interfaces/api';
 import { Soccer } from 'src/app/interfaces/soccer';
 import { ApiService } from 'src/app/services/api/api.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
-import removeFalsy from 'src/app/util/removeFalsy';
 @Component({
   selector: 'app-form-soccer',
   templateUrl: './form-soccer.component.html',
@@ -62,7 +62,7 @@ export class FormSoccerComponent implements OnInit {
 
   onSubmit(){
     if(!this.edit){
-      let data:Soccer = removeFalsy(this.soccerForm.value)
+      let data:Soccer = <Soccer> _.pickBy(this.soccerForm.value,_.identity)
       this.api.createSoccer(data).then((res:IApi<Soccer>)=>{
         this.toast.showToast(NbGlobalPhysicalPosition.TOP_RIGHT,'success',res.message)
         this.windowRef.close()

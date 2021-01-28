@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as _ from 'lodash';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NbWindowRef, NbWindowConfig, NbGlobalPhysicalPosition } from '@nebular/theme';
 import { IApi } from 'src/app/interfaces/api';
@@ -6,7 +7,6 @@ import { Match } from 'src/app/interfaces/match';
 import { Soccer } from 'src/app/interfaces/soccer';
 import { ApiService } from 'src/app/services/api/api.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
-import removeFalsy from 'src/app/util/removeFalsy';
 
 @Component({
   selector: 'app-form-match',
@@ -54,7 +54,7 @@ export class FormMatchComponent implements OnInit {
 
   onSubmit(){
     let soccer:Soccer = <Soccer> this.windowConf.context
-    let match:Match = removeFalsy(this.matchForm.value)
+    let match:Match = <Match> _.pickBy(this.matchForm.value,_.identity)
     this.api.addSoccerToMatch(soccer._id,match).then((res:any)=>{
       this.toast.showToast(NbGlobalPhysicalPosition.TOP_RIGHT,'success',res.message)
       this.windowRef.close()
