@@ -1,4 +1,6 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NbAuthModule } from '@nebular/auth';
 
 import { MatchesPageComponent } from './matches-page.component';
 
@@ -8,7 +10,11 @@ describe('MatchesPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MatchesPageComponent ]
+      declarations: [ MatchesPageComponent ],
+      imports: [
+        HttpClientTestingModule,
+        NbAuthModule.forRoot()
+      ]
     })
     .compileComponents();
   });

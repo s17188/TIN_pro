@@ -102,7 +102,7 @@ export class MySoccersPageComponent implements OnInit {
 
   onEdit(event:any) {
     let soccer:Soccer = event.data
-    this.windowService.open(FormSoccerComponent, { title: `Edit Soccer`, context: soccer }).onClose.subscribe(()=>{
+    this.windowService.open(FormSoccerComponent, { title: `Edit Soccer`, context: {currentSoccer:soccer} }).onClose.subscribe(()=>{
       this.getData()
     });
   }
@@ -110,11 +110,11 @@ export class MySoccersPageComponent implements OnInit {
   onCustom(event:any) {
     let soccer:Soccer = event.data
     if(event.action == "add-match"){
-      this.windowService.open(FormMatchComponent, { title: `Add Match`, context: soccer }).onClose.subscribe(()=>{
+      this.windowService.open(FormMatchComponent, { title: `Add Match`, context: {currentSoccer:soccer}}).onClose.subscribe(()=>{
         this.getData()
       });
     }else{
-      this.windowService.open(ViewSoccerMatchesComponent, { title: `Matches & Stats`, context: soccer })
+      this.windowService.open(ViewSoccerMatchesComponent, { title: `Matches & Stats`, context: {matches:soccer.stats} })
     }
   }
 

@@ -12,6 +12,7 @@ import { ToastService } from 'src/app/services/toast/toast.service';
   styleUrls: ['./form-soccer.component.scss']
 })
 export class FormSoccerComponent implements OnInit {
+  currentSoccer?:Soccer
   edit:boolean = false
   soccerForm = this.fb.group({
     name: ['',Validators.required],
@@ -33,16 +34,13 @@ export class FormSoccerComponent implements OnInit {
   constructor(
     private api:ApiService,
     private toast:ToastService,
-    private windowRef: NbWindowRef,
-    private windowConf: NbWindowConfig,
+    private ref: NbWindowRef,
     private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.windowConf.closeOnBackdropClick = false
-    this.windowConf.closeOnEsc = false
-    if(this.windowConf.context?.hasOwnProperty("name")){
+    if(this.currentSoccer?.hasOwnProperty("name")){
       this.edit = true
-      let data:any = this.windowConf.context
+      let data:any = this.currentSoccer
       this.soccerForm.setValue({
         name:data?.name || '',
         surname:data?.surname || '',
@@ -65,20 +63,20 @@ export class FormSoccerComponent implements OnInit {
       let data:Soccer = <Soccer> _.pickBy(this.soccerForm.value,_.identity)
       this.api.createSoccer(data).then((res:IApi<Soccer>)=>{
         this.toast.showToast(NbGlobalPhysicalPosition.TOP_RIGHT,'success',res.message)
-        this.windowRef.close()
+        this.ref.close()
       })
     }else{
-      let context:Soccer = <Soccer> this.windowConf.context
-      let data:Soccer = this.soccerForm.value
+      let context:Soccer = <Soccer> this.currentSoccer
+      let data:Soccer = <Soccer> _.pickBy(this.soccerForm.value,_.identity)
       data._id = context._id
       this.api.updateSoccer(data).then((res:IApi<Soccer>)=>{
         this.toast.showToast(NbGlobalPhysicalPosition.TOP_RIGHT,'success',res.message)
-        this.windowRef.close()
+        this.ref.close()
       })
     }
   }
 
   close(){
-    this.windowRef.close()
+    this.ref.close()
   }
 }

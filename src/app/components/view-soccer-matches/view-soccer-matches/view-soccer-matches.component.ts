@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NbToastrService, NbWindowRef, NbWindowConfig } from '@nebular/theme';
+import { Stat } from 'src/app/interfaces/stat';
+import { Soccer } from 'src/app/interfaces/soccer';
 import { ApiService } from 'src/app/services/api/api.service';
 
 @Component({
@@ -8,21 +10,10 @@ import { ApiService } from 'src/app/services/api/api.service';
   styleUrls: ['./view-soccer-matches.component.scss']
 })
 export class ViewSoccerMatchesComponent implements OnInit {
-  matches:any
-  constructor(
-    private api:ApiService,
-    private toastrService: NbToastrService,
-    private windowRef: NbWindowRef,
-    private windowConf: NbWindowConfig) 
-    { 
+  matches?:Stat[]
 
-    }
+  constructor() { }
 
-  ngOnInit(): void {
-    this.windowConf.closeOnBackdropClick = false
-    this.windowConf.closeOnEsc = false
-    let context:any = this.windowConf.context
-    this.matches = context.stats
-  }
+  ngOnInit(): void {}
 
 }

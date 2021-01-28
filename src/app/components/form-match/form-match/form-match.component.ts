@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import * as _ from 'lodash';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NbWindowRef, NbWindowConfig, NbGlobalPhysicalPosition } from '@nebular/theme';
@@ -14,6 +14,7 @@ import { ToastService } from 'src/app/services/toast/toast.service';
   styleUrls: ['./form-match.component.scss']
 })
 export class FormMatchComponent implements OnInit {
+  currentSoccer?:Soccer
   matches:Match[] = []
   selectedMatch?:Match = undefined
   matchForm = this.fb.group({
@@ -37,27 +38,24 @@ export class FormMatchComponent implements OnInit {
   constructor(
     private api:ApiService,
     private toast:ToastService,
-    private windowRef: NbWindowRef,
-    private windowConf: NbWindowConfig,
+    private ref: NbWindowRef,
     private fb: FormBuilder) 
     { 
 
     }
 
   ngOnInit(): void {
-    this.windowConf.closeOnBackdropClick = false
-    this.windowConf.closeOnEsc = false
     this.api.getMatches().then((res:IApi<Match[]>)=>{
       this.matches = res.data
     })
   }
 
   onSubmit(){
-    let soccer:Soccer = <Soccer> this.windowConf.context
+    let soccer:Soccer = <Soccer> this.currentSoccer
     let match:Match = <Match> _.pickBy(this.matchForm.value,_.identity)
     this.api.addSoccerToMatch(soccer._id,match).then((res:any)=>{
       this.toast.showToast(NbGlobalPhysicalPosition.TOP_RIGHT,'success',res.message)
-      this.windowRef.close()
+      this.close()
     })
   }
 
@@ -75,7 +73,6 @@ export class FormMatchComponent implements OnInit {
   }
 
   close(){
-    this.windowRef.close()
+    this.ref.close()
   }
-
 }

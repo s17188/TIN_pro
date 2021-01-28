@@ -8,6 +8,7 @@ import { NbMenuItem, NbSidebarService } from '@nebular/theme';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  title = 'footballers-app'
   user:any = {}
   items: NbMenuItem[] = []
   // userMenu = [ { title: 'Log out', link: '/auth/logout' } ];
@@ -17,7 +18,6 @@ export class AppComponent {
   ) {
     this.authService.onTokenChange()
       .subscribe((token: NbAuthToken) => {
-        console.log(token)
         if (token.isValid()) {
           this.user = token.getPayload()
           this.items = [
