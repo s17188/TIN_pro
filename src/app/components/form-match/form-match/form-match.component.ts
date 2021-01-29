@@ -45,7 +45,7 @@ export class FormMatchComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.api.getMatches().then((res:IApi<Match[]>)=>{
+    this.api.getMatches().subscribe((res:IApi<Match[]>)=>{
       this.matches = res.data
     })
   }
@@ -53,16 +53,16 @@ export class FormMatchComponent implements OnInit {
   onSubmit(){
     let soccer:Soccer = <Soccer> this.currentSoccer
     let match:Match = <Match> _.pickBy(this.matchForm.value,_.identity)
-    this.api.addSoccerToMatch(soccer._id,match).then((res:any)=>{
+    this.api.addSoccerToMatch(soccer._id,match).subscribe((res:any)=>{
       this.toast.showToast(NbGlobalPhysicalPosition.TOP_RIGHT,'success',res.message)
       this.close()
     })
   }
 
   addNewMatch(){
-    this.api.createMatch(this.addMatchForm.value).then((res:IApi<Match>)=>{
+    this.api.createMatch(this.addMatchForm.value).subscribe((res:IApi<Match>)=>{
       this.toast.showToast(NbGlobalPhysicalPosition.TOP_RIGHT,'success',res.message)
-      this.api.getMatches().then((res:IApi<Match[]>)=>{
+      this.api.getMatches().subscribe((res:IApi<Match[]>)=>{
         this.matches = res.data
         this.addMatchForm.setValue({
           match_date:'',

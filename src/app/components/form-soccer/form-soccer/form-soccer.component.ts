@@ -6,6 +6,7 @@ import { IApi } from 'src/app/interfaces/api';
 import { Soccer } from 'src/app/interfaces/soccer';
 import { ApiService } from 'src/app/services/api/api.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-form-soccer',
   templateUrl: './form-soccer.component.html',
@@ -61,16 +62,18 @@ export class FormSoccerComponent implements OnInit {
   onSubmit(){
     if(!this.edit){
       let data:Soccer = <Soccer> _.pickBy(this.soccerForm.value,_.identity)
-      this.api.createSoccer(data).then((res:IApi<Soccer>)=>{
-        this.toast.showToast(NbGlobalPhysicalPosition.TOP_RIGHT,'success',res.message)
+      this.api.createSoccer(data).then(async (res:Observable<IApi<Soccer>>)=>{
+        let newSoccer = await res.toPromise()
+        this.toast.showToast(NbGlobalPhysicalPosition.TOP_RIGHT,'success',newSoccer.message)
         this.ref.close()
       })
     }else{
       let context:Soccer = <Soccer> this.currentSoccer
       let data:Soccer = <Soccer> _.pickBy(this.soccerForm.value,_.identity)
       data._id = context._id
-      this.api.updateSoccer(data).then((res:IApi<Soccer>)=>{
-        this.toast.showToast(NbGlobalPhysicalPosition.TOP_RIGHT,'success',res.message)
+      this.api.updateSoccer(data).then(async (res:Observable<IApi<Soccer>>)=>{
+        let updatedSoccer = await res.toPromise()
+        this.toast.showToast(NbGlobalPhysicalPosition.TOP_RIGHT,'success',updatedSoccer.message)
         this.ref.close()
       })
     }

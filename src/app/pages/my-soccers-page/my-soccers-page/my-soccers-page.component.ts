@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NbGlobalPhysicalPosition, NbWindowService } from '@nebular/theme';
 import { LocalDataSource } from 'ng2-smart-table';
+import { Observable } from 'rxjs';
 import { FormMatchComponent } from 'src/app/components/form-match/form-match/form-match.component';
 import { FormSoccerComponent } from 'src/app/components/form-soccer/form-soccer/form-soccer.component';
 import { ViewSoccerMatchesComponent } from 'src/app/components/view-soccer-matches/view-soccer-matches/view-soccer-matches.component';
@@ -93,7 +94,7 @@ export class MySoccersPageComponent implements OnInit {
   onDelete(event:any) {
     let soccer:Soccer = event.data
     if (window.confirm('Are you sure you want to delete?')) {
-      this.api.delSoccer(soccer).then((res:IApi<Soccer>)=>{
+      this.api.delSoccer(soccer).subscribe((res:IApi<Soccer>)=>{
         this.toast.showToast(NbGlobalPhysicalPosition.TOP_RIGHT, res.status,res.message)
         this.getData()
       })
@@ -119,8 +120,8 @@ export class MySoccersPageComponent implements OnInit {
   }
 
   getData(){
-    this.api.getAgentSoccers().then((data:IApi<Soccer[]>) => {
-      this.source.load(data.data);
+    this.api.getAgentSoccers().then(async (res:Observable<IApi<Soccer[]>>) => {
+      this.source.load(((await res.toPromise()).data));
       this.source.setSort([{field:'create_date',direction:'desc'}])
     });
   }

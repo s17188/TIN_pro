@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { NbAuthService, NbAuthSimpleToken, NbAuthToken } from '@nebular/auth';
 import { IApi } from 'src/app/interfaces/api';
 import { Soccer } from 'src/app/interfaces/soccer';
 import { Match } from 'src/app/interfaces/match';
 import { Stat } from 'src/app/interfaces/stat';
+import { Observable, of } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -16,46 +18,69 @@ export class ApiService {
     private authService: NbAuthService
   ) { }
 
-  getSoccers():Promise<IApi<Soccer[]>>{
-    return this.http.get<IApi<Soccer[]>>(this.api+'soccers').toPromise()
+  getSoccers():Observable<IApi<Soccer[]>>{
+    return this.http.get<IApi<Soccer[]>>(this.api+'soccers').pipe(
+      catchError(this.handleError<IApi<Soccer[]>>())
+    )
   }
 
-  async getAgentSoccers():Promise<IApi<Soccer[]>>{
+  async getAgentSoccers():Promise<Observable<IApi<Soccer[]>>>{
     let token:NbAuthToken = await this.getToken()
-    return this.http.post<IApi<Soccer[]>>(this.api+'soccers/agent',token).toPromise()
+    return this.http.post<IApi<Soccer[]>>(this.api+'soccers/agent',token).pipe(
+      catchError(this.handleError<IApi<Soccer[]>>())
+    )
   }
 
-  async createSoccer(soccer:Soccer):Promise<IApi<Soccer>>{
-    let token:NbAuthToken = await this.getToken()
-    soccer.agentId = token.getPayload()._id
-    return this.http.post<IApi<Soccer>>(this.api+'soccers',soccer).toPromise()
-  }
-
-  async updateSoccer(soccer:Soccer):Promise<IApi<Soccer>>{
+  async createSoccer(soccer:Soccer):Promise<Observable<IApi<Soccer>>>{
     let token:NbAuthToken = await this.getToken()
     soccer.agentId = token.getPayload()._id
-    return this.http.put<IApi<Soccer>>(this.api+'soccers/'+soccer._id,soccer).toPromise()
+    return this.http.post<IApi<Soccer>>(this.api+'soccers',soccer).pipe(
+      catchError(this.handleError<IApi<Soccer>>())
+    )
   }
 
-  delSoccer(soccer:Soccer):Promise<IApi<Soccer>>{
-    return this.http.delete<IApi<Soccer>>(this.api+'soccers/'+soccer._id).toPromise()
+  async updateSoccer(soccer:Soccer):Promise<Observable<IApi<Soccer>>>{
+    let token:NbAuthToken = await this.getToken()
+    soccer.agentId = token.getPayload()._id
+    return this.http.put<IApi<Soccer>>(this.api+'soccers/'+soccer._id,soccer).pipe(
+      catchError(this.handleError<IApi<Soccer>>())
+    )
   }
 
-  getMatches():Promise<IApi<Match[]>>{
-    return this.http.get<IApi<Match[]>>(this.api+'soccers/match').toPromise()
+  delSoccer(soccer:Soccer):Observable<IApi<Soccer>>{
+    return this.http.delete<IApi<Soccer>>(this.api+'soccers/'+soccer._id).pipe(
+      catchError(this.handleError<IApi<Soccer>>())
+    )
   }
 
-  createMatch(match:Match):Promise<IApi<Match>>{
-    return this.http.post<IApi<Match>>(this.api+'soccers/match',match).toPromise()
+  getMatches():Observable<IApi<Match[]>>{
+    return this.http.get<IApi<Match[]>>(this.api+'soccers/match').pipe(
+      catchError(this.handleError<IApi<Match[]>>())
+    )
   }
 
-  addSoccerToMatch(soccerId:string,match:Match):Promise<IApi<Match>>{
+  createMatch(match:Match):Observable<IApi<Match>>{
+    return this.http.post<IApi<Match>>(this.api+'soccers/match',match).pipe(
+      catchError(this.handleError<IApi<Match>>())
+    )
+  }
+
+  addSoccerToMatch(soccerId:string,match:Match):Observable<IApi<Match>>{
     match.soccerId=soccerId
-    return this.http.post<IApi<Match>>(this.api+'soccers/stat',match).toPromise()
+    return this.http.post<IApi<Match>>(this.api+'soccers/stat',match).pipe(
+      catchError(this.handleError<IApi<Match>>())
+    )
   }
 
   getToken():Promise<NbAuthToken>{
     return this.authService.getToken().toPromise()
+  }
+
+  private handleError<T>(result = {} as T) {
+    return (error: HttpErrorResponse): Observable<T> => {
+      console.error(error);
+      return of(result);
+    };
   }
 
 }

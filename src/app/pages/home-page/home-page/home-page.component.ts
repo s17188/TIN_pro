@@ -13,7 +13,7 @@ export class HomePageComponent implements OnInit {
   constructor(private api:ApiService) { }
 
   ngOnInit(): void {
-    this.api.getSoccers().then((res:IApi<Soccer[]>)=>{
+    this.api.getSoccers().subscribe((res:IApi<Soccer[]>)=>{
       this.data = _.orderBy(res.data,'create_date','desc')
     })
   }

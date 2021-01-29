@@ -14,7 +14,7 @@ export class MatchesPageComponent implements OnInit {
   constructor(private api:ApiService) { }
 
   ngOnInit(): void {
-    this.api.getMatches().then((res:IApi<Match[]>)=>{
+    this.api.getMatches().subscribe((res:IApi<Match[]>)=>{
       this.data=_.orderBy(res.data,'create_date','desc')
     })
   }
