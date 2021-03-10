@@ -2,6 +2,11 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.5.
 
+## Sample backend
+https://github.com/s17188/TIN_pro_backend
+
+![alt text](https://github.com/s17188/TIN_pro/blob/master/Diagram.jpg?raw=true)
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
